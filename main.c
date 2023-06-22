@@ -104,11 +104,14 @@ void shutdown(int sig)
 
 void co_handler(void)
 {
-	uint16_t co;
-	co = get_co();
+	co2_struct *mhz19;
+	mhz19 = get_co();
 	char co_buf[5];
-	sprintf(co_buf, "%u", co);
+	sprintf(co_buf, "%u", mhz19->co2);
 	mqtt_send(co_buf, CO2_STATE_TOPYC);
+	sprintf(co_buf, "%d", mhz19->temp);
+	mqtt_send(co_buf, CO2_TEMP_STATE_TOPYC);
+	printf("%s\n",co_buf);
 	sleep(10);
 }
 
@@ -118,6 +121,7 @@ void connect_messages(void)
 	mqtt_send(FAN_CONFIG, FAN_CONFIG_TOPIC);
 	mqtt_send(HEATER_CONFIG, HEATER_CONFIG_TOPIC);
 	mqtt_send(CO2_CONFIG, CO2_CONFIG_TOPIC);
+	mqtt_send(CO2_TEMP_CONFIG, CO2_TEMP_CONFIG_TOPIC);
 	vent_state_typedef status = ventilation_get_status();
 	if ((status == STARTING) ||
 		(status == RUNNING) ||

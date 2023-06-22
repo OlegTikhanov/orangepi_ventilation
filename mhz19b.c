@@ -37,9 +37,10 @@ static char get_checksumm(char *packet)
     return checksum;
 }
 
-//старт после сброса питания ~ 0сек
-uint16_t get_co(void)
+// старт после сброса питания ~ 0сек
+co2_struct* get_co(void)
 {
+    static co2_struct mhz19;
     fflush(stdout);
     for (uint8_t i = 0; i < sizeof(get_co_command) / sizeof(char); i++)
         serialPutchar(fd, get_co_command[i]);
@@ -52,6 +53,10 @@ uint16_t get_co(void)
         i++;
     }
     if (response_buf[8] == get_checksumm(response_buf))
-        return response_buf[2] * 256 + response_buf[3];
+    {
+        mhz19.co2 = response_buf[2] * 256 + response_buf[3];
+        mhz19.temp = response_buf[4] - 40;
+        return &mhz19;
+    }
     return 0;
 }

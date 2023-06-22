@@ -32,6 +32,7 @@
 #define FAN_CONFIG_TOPIC "homeassistant/fan/room/ventilation/config"
 #define HEATER_CONFIG_TOPIC "homeassistant/switch/room/ventilation_heater/config"
 #define CO2_CONFIG_TOPIC "homeassistant/sensor/room/ventilation_co2/config"
+#define CO2_TEMP_CONFIG_TOPIC "homeassistant/sensor/room/ventilation_co2_temp/config"
 
 // топики
 #define ROOT_TOPIC "room/ventilation/"
@@ -44,9 +45,9 @@
 #define HEATER_STATE_TOPYC ROOT_TOPIC "heater/state"
 
 #define CO2_STATE_TOPYC ROOT_TOPIC "co2/state"
+#define CO2_TEMP_STATE_TOPYC "co2_temp/state"
 
 //Конфиги
-
 #define DEVICE_CONFIG \
 "{\
 	\"identifiers\":\"ventilation\",\
@@ -91,6 +92,17 @@
 	\"unique_id\":\"ventilation_co2\",\
 	\"object_id\":\"co2\",\
 	\"state_topic\":\"" CO2_STATE_TOPYC "\",\
+	\"device\":" DEVICE_CONFIG "\
+}"
+
+#define CO2_TEMP_CONFIG \
+"{\
+	\"name\":\"CO2 Температура\",\
+	\"unit_of_measurement\":\"°C\",\
+	\"device_class\":\"temperature\",\
+	\"unique_id\":\"ventilation_co2_temp\",\
+	\"object_id\":\"co2_temp\",\
+	\"state_topic\":\"" CO2_TEMP_STATE_TOPYC "\",\
 	\"device\":" DEVICE_CONFIG "\
 }"
 
