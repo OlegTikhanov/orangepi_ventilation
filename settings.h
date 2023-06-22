@@ -45,7 +45,7 @@
 #define HEATER_STATE_TOPYC ROOT_TOPIC "heater/state"
 
 #define CO2_STATE_TOPYC ROOT_TOPIC "co2/state"
-#define CO2_TEMP_STATE_TOPYC "co2_temp/state"
+#define CO2_TEMP_STATE_TOPYC ROOT_TOPIC "co2_temp/state"
 
 //Конфиги
 #define DEVICE_CONFIG \
