@@ -111,7 +111,6 @@ void co_handler(void)
 	mqtt_send(co_buf, CO2_STATE_TOPYC);
 	sprintf(co_buf, "%d", mhz19->temp);
 	mqtt_send(co_buf, CO2_TEMP_STATE_TOPYC);
-	printf("%s\n",co_buf);
 	sleep(10);
 }
 
